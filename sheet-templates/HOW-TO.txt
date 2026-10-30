@@ -1,0 +1,18 @@
+GOOGLE SHEET SETUP (Banglish guide)
+
+1. Google Sheets e notun ekta file khulo. Nicher 4 ta tab banao: students, notices, tracker, stories.
+2. Prottek tab e ei folder er oi naam er .csv file er pratham line (header) hubohu copy koro.
+   Excel e kaj korle: File > Save as > Google Sheets e upload koro (drive.google.com > New > File upload > Open with Google Sheets).
+3. Prottek tab publish koro: File > Share > Publish to web > Link tab > oi tab ta select koro > "Comma-separated values (.csv)" > Publish.
+4. Je link ta pabe seta copy kore js/data.js e SHEET er moddhe boshao:
+   var SHEET = { people: 'LINK1', notices: 'LINK2', tracker: 'LINK3', stories: 'LINK4' };
+   Je tab use korbe na, seta '' rakho.
+5. data.js GitHub e push koro. Eibar thekey sheet e kichu bodlale site nijei update hobe (1 theke 5 minute lagte pare).
+
+COLUMN NOTES
+students: Track = mkt, gfx, wp, web. Status = live, in progress, not started. Skills alada korte ; use koro.
+          Photo = images/students folder er file name (jemon 14.jpg) ba pura link (https://...). First client = yes likhle gold star.
+          Kono link na thakle oi cell khali rakho.
+notices:  Date = 2026-11-07 format. Kind = class, due, ba khali.
+tracker:  Header e class:Naam|Tarikh ar hw:Kajer naam|Due tarikh. Roll = student er serial (1 theke). Cell e P (present) ba Y (jomа dise) likho, na hole khali.
+stories:  Student = roll number. Shudhu real client er kotha likho.

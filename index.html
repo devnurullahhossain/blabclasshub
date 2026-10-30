@@ -8,16 +8,25 @@
       content="B-lab class hub: the 8th batch of the E-Learning and Earning freelancing program. Digital marketing, graphic design, WordPress, HTML and CSS."
     />
     <meta name="theme-color" content="#0E3A31" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="B-lab Class Hub" />
+    <meta property="og:title" content="B-lab Class Hub · Learn it. Build it. Earn from it." />
+    <meta
+      property="og:description"
+      content="Meet the 25 students of the E-Learning and Earning 8th batch. Digital marketing, graphic design, WordPress, HTML and CSS."
+    />
+    <meta property="og:url" content="https://blabclasshub.vercel.app/" />
+    <meta property="og:image" content="https://blabclasshub.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230E3A31'/%3E%3Cpath d='M11 8v16M11 8h6a4 4 0 0 1 0 8h-6M11 16h7a4 4 0 0 1 0 8h-7' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='26' cy='6.5' r='2.4' fill='%23F2B33D'/%3E%3C/svg%3E"
     />
     <title>B-lab Class Hub</title>
-    <script>
-      try {
-        if (localStorage.getItem("blab-motion") === "on") document.documentElement.setAttribute("data-motion", "on");
-      } catch (e) {}
-    </script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Hind+Siliguri:wght@400;500;600&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"
@@ -25,6 +34,10 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <div class="banner" id="banner" hidden>
+      <a id="bannerText" href="#notices"></a>
+      <button id="bannerX" type="button" aria-label="Hide announcement">&times;</button>
+    </div>
     <div class="progress" id="prog" aria-hidden="true"></div>
 
     <div class="band" id="top">
@@ -47,8 +60,8 @@
             <a href="#learn">Learn</a>
             <a href="#students">Students</a>
             <a href="#notices">Notices</a>
-            <a href="#resources">Resources</a>
-            <button class="ghost" id="motionBtn" type="button" hidden aria-pressed="false" aria-label="Turn animations on or off">
+            <a href="#hire">Hire</a>
+            <button class="ghost" id="cmdBtn" type="button" aria-label="Search students and sections">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -58,10 +71,31 @@
                 stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <circle cx="12" cy="12" r="9" />
-                <path d="M10 8.5l5 3.5-5 3.5z" /></svg
-              ><span class="lbl">Motion off</span>
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" /></svg
+              ><span class="lbl">Search</span>
             </button>
+            <span class="palwrap"
+              ><button class="ghost" id="palBtn" type="button" aria-label="Choose colour theme" aria-expanded="false">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.8-.4-1.2-.3-.4-.4-.8-.4-1.2 0-1 .8-1.7 1.8-1.7H17a4 4 0 0 0 4-4C21 6.7 17 3 12 3z"
+                  />
+                  <circle cx="7.5" cy="11" r="1" />
+                  <circle cx="10" cy="7" r="1" />
+                  <circle cx="15" cy="7" r="1" /></svg
+                ><span class="lbl">Colours</span>
+              </button>
+              <span class="pal" id="pal" hidden role="group" aria-label="Colour theme"></span
+            ></span>
             <button class="ghost" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
               <span class="to-dark"
                 ><svg
@@ -176,6 +210,7 @@
           </div>
           <p>Projects from our batch that are already online. Open a card to meet the builder.</p>
         </div>
+        <div class="bprog" id="bprog"></div>
         <ul class="livegrid" id="liveList"></ul>
       </section>
 
@@ -211,7 +246,7 @@
             <p class="kicker">Class roster</p>
             <h2 id="h-students">Meet the <em>students</em></h2>
           </div>
-          <p>Search by name or skill, pick a track, or let chance choose.</p>
+          <p>Search by name or skill, pick a track, or let chance choose. Open any profile to make a shareable ID card.</p>
         </div>
         <div class="tools">
           <div class="search">
@@ -252,6 +287,51 @@
         <ul class="notes" id="notes"></ul>
       </section>
 
+      <section class="sec shell" id="tracker" aria-labelledby="h-tracker">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Progress</p>
+            <h2 id="h-tracker">Class <em>tracker</em></h2>
+          </div>
+          <p>Who came to class and who handed in the work. Find your name and see where you stand.</p>
+        </div>
+        <div class="tk-sum" id="tkSum"></div>
+        <div class="tk-tools">
+          <div class="search tk-search">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input id="tkQ" type="search" placeholder="Find your name" aria-label="Find a student in the tracker" />
+          </div>
+          <label class="tk-chk"><input type="checkbox" id="tkLate" /> Only students with late work</label>
+        </div>
+        <div class="tk-wrap" id="tkWrap"><table class="tk" id="tkTable"></table></div>
+        <p class="tk-key">
+          <span><i class="k-ok"></i>Handed in</span><span><i class="k-late"></i>Late</span><span><i class="k-open"></i>Not due yet</span
+          ><span><i class="k-p"></i>Present</span><span><i class="k-a"></i>Absent</span>
+        </p>
+      </section>
+
+      <section class="sec shell" id="stories" aria-labelledby="h-stories">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Real work, real clients</p>
+            <h2 id="h-stories">Success <em>stories</em></h2>
+          </div>
+          <p>What clients say after working with a student from our batch.</p>
+        </div>
+        <div class="stories" id="storyList"></div>
+      </section>
+
       <section class="sec shell" id="resources" aria-labelledby="h-res">
         <div class="sec-head">
           <div>
@@ -261,6 +341,29 @@
           <p>Everything from class, in one place.</p>
         </div>
         <ul class="res" id="res"></ul>
+      </section>
+      <section class="sec shell" id="hire" aria-labelledby="h-hire">
+        <div class="hire">
+          <div class="hire-copy">
+            <p class="kicker kicker--spark">Work with us</p>
+            <h2 id="h-hire">Hire the <em>batch</em></h2>
+            <p class="hire-intro" id="hireIntro"></p>
+            <div class="hire-cta" id="hireCta"></div>
+          </div>
+          <ol class="hire-steps" id="hireSteps"></ol>
+          <ul class="hire-svc" id="hireSvc"></ul>
+        </div>
+      </section>
+
+      <section class="sec shell" id="faq" aria-labelledby="h-faq">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Good to know</p>
+            <h2 id="h-faq">Common <em>questions</em></h2>
+          </div>
+          <p>Short answers about the site, the class and how to join in.</p>
+        </div>
+        <div class="faq" id="faqList"></div>
       </section>
     </main>
 
@@ -286,6 +389,7 @@
               together.
             </p>
             <p class="bn" lang="bn">Our Class, Our Work</p>
+            <div class="share" id="shareRow"></div>
           </div>
           <nav aria-label="Footer">
             <h3>Explore</h3>
@@ -293,7 +397,11 @@
               <li><a href="#learn">What we learn</a></li>
               <li><a href="#students">Students</a></li>
               <li><a href="#notices">Notice board</a></li>
+              <li><a href="#tracker">Class tracker</a></li>
+              <li><a href="#stories">Success stories</a></li>
               <li><a href="#resources">Resources</a></li>
+              <li><a href="#hire">Hire the batch</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </nav>
           <div>
@@ -330,6 +438,48 @@
       </button>
     </div>
 
+    <dialog id="cmdk" aria-label="Search">
+      <div class="ck">
+        <div class="ck-in">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" /></svg
+          ><input
+            id="ckQ"
+            type="text"
+            autocomplete="off"
+            placeholder="Search a student, skill or section"
+            aria-label="Search"
+            role="combobox"
+            aria-expanded="true"
+            aria-controls="ckList"
+          /><kbd>Esc</kbd>
+        </div>
+        <ul class="ck-list" id="ckList" role="listbox"></ul>
+        <p class="ck-foot"><span>Up and down to move</span><span>Enter to open</span></p>
+      </div>
+    </dialog>
+
+    <dialog id="idDlg" aria-label="Student ID card">
+      <div class="idc">
+        <div class="idc-stage" id="idStage"><img id="idImg" alt="B-lab student ID card" /><span class="idc-glare" aria-hidden="true"></span></div>
+        <p class="idc-hint" id="idHint">Move your mouse over the card.</p>
+        <div class="idc-actions">
+          <button class="btn btn--spark" id="idDl" type="button">Download PNG</button>
+          <button class="btn btn--line" id="idShare" type="button" hidden>Share</button>
+          <button class="btn btn--line" id="idClose" type="button">Close</button>
+        </div>
+      </div>
+    </dialog>
+
     <dialog id="dlg" aria-labelledby="mName">
       <div class="m">
         <div class="m-banner">
@@ -346,7 +496,10 @@
           <div class="chips" id="mSkills"></div>
           <h4>Featured project</h4>
           <p class="m-proj" id="mProj"></p>
+          <div id="mTrack"></div>
+          <div id="mLinksWrap"></div>
           <div class="m-actions">
+            <button id="mCard" class="m-card" type="button">Make ID card</button>
             <button id="mShare" type="button">Copy profile link</button>
             <a id="mLink" href="#" target="_blank" rel="noopener" hidden>Portfolio</a>
           </div>
@@ -361,6 +514,7 @@
     </dialog>
 
     <script src="js/data.js"></script>
+    <script src="js/sheet.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
